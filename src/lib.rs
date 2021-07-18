@@ -713,7 +713,7 @@ mod tests {
         assert_relative_eq!(ingredient.quantities[0].amount, 2.);
         assert_eq!(ingredient.quantities[0].unit, Some("pound".to_string()));
         assert_eq!(ingredient.quantities[0].unit_type, Some(UnitType::English));
-        assert_eq!(ingredient.quantities[1].amount, 4.);
+        assert_relative_eq!(ingredient.quantities[1].amount, 4.);
         assert_eq!(ingredient.quantities[1].unit, Some("ounce".to_string()));
         assert_eq!(ingredient.quantities[1].unit_type, Some(UnitType::English));
         assert_eq!(ingredient.ingredient, Some("potatoes".to_string()));
@@ -727,7 +727,7 @@ mod tests {
         assert_relative_eq!(ingredient.quantities[0].amount, 2.);
         assert_eq!(ingredient.quantities[0].unit, Some("pound".to_string()));
         assert_eq!(ingredient.quantities[0].unit_type, Some(UnitType::English));
-        assert_eq!(ingredient.quantities[1].amount, 4.);
+        assert_relative_eq!(ingredient.quantities[1].amount, 4.);
         assert_eq!(ingredient.quantities[1].unit, Some("ounce".to_string()));
         assert_eq!(ingredient.quantities[1].unit_type, Some(UnitType::English));
         assert_eq!(ingredient.ingredient, Some("potatoes".to_string()));

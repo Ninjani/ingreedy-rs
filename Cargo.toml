@@ -1,9 +1,9 @@
 [package]
 name = "ingreedy-rs"
 version = "0.1.0"
-authors = ["Ninjani <48680156+Ninjani@users.noreply.github.com>"]
+authors = ["Ninjani"]
 edition = "2018"
-description = "ingreedy-rs mandatory description"
+description = "Rust port of ingreedy - natural language recipe ingredient parser"
 repository = "https://github.com/Ninjani/ingreedy-rs"
 license = "MIT OR Apache-2.0"
 keywords = ["ingreedy", "ingredient", "parser", "recipe", "nlp"]

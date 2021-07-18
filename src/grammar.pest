@@ -1,0 +1,222 @@
+ingredient_addition = _{ multipart_quantity ~ alternative_quantity? ~ break_character? ~ ingredient? ~ catch_all }
+
+multipart_quantity
+        = {(quantity_fragment ~ break_character?)*}
+
+quantity_fragment
+        = {quantity | amount}
+
+alternative_quantity
+        = {"/" ~ break_character? ~ multipart_quantity}
+
+quantity = { amount_with_conversion | amount_with_attached_units | amount_with_multiplier | amount_imprecise }
+amount_with_conversion = { amount ~ break_character? ~ unit ~ !ASCII_ALPHA ~ break_character ~ parenthesized_quantity }
+amount_with_attached_units = { amount ~ break_character? ~ unit ~ !ASCII_ALPHA }
+amount_with_multiplier = { amount ~ break_character? ~ parenthesized_quantity }
+amount_imprecise = { imprecise_unit ~ !ASCII_ALPHA }
+parenthesized_quantity = { open ~ amount_with_attached_units ~ close }
+amount = { float | mixed_number | fraction | integer | number }
+break_character = {" " | comma | hyphen | "\t"}
+separator = { break_character | "-" }
+ingredient = { word ~ (break_character ~ word)* ~ catch_all }
+open = { "(" }
+close = { ")" }
+word = { (ASCII_ALPHA+) }
+float = { (integer? ~ "." ~ integer) }
+mixed_number = { (integer ~ separator ~ fraction) }
+fraction = { (multicharacter_fraction) | (unicode_fraction) }
+multicharacter_fraction = { (integer ~ "/" ~ integer) }
+integer = {ASCII_DIGIT+}
+comma = {","}
+hyphen = {"-"}
+unit = { english_unit | metric_unit | imprecise_unit }
+english_unit = { calorie
+        | cup
+        | fluid_ounce
+        | gallon
+        | ounce
+        | pint
+        | pound
+        | quart
+        | tablespoon
+        | teaspoon }
+
+cup = {"cups"
+        | "cup"
+        | "c."
+        | "c"}
+
+fluid_ounce = { fluid ~ break_character ~ ounce }
+fluid = {"fluid"
+        | "fl."
+        | "fl"}
+
+gallon = {"gallons"
+        | "gallon"
+        | "gal."
+        | "gal"}
+
+calorie = {"calories"
+        | "calorie"
+        | "cal"
+        | "kilocalories"
+        | "kilocalorie"
+        | "kCal"
+        | "kcal"}
+
+ounce = {"ounces"
+        | "ounce"
+        | "oz."
+        | "oz"}
+
+pint = {"pints"
+        | "pint"
+        | "pt."
+        | "pt"}
+
+pound = {"pounds"
+        | "pound"
+        | "lbs."
+        | "lbs"
+        | "lb."
+        | "lb"}
+
+quart = {"quarts"
+        | "quart"
+        | "qts."
+        | "qts"
+        | "qt."
+        | "qt"}
+
+tablespoon
+        = {"tablespoons"
+        | "tablespoon"
+        | "tbsp."
+        | "tbsp"
+        | "tbs."
+        | "tbs"
+        | "T."
+        | "T"}
+
+teaspoon
+        = {"teaspoons"
+        | "teaspoon"
+        | "tsp."
+        | "tsp"
+        | "t."
+        | "t"}
+
+metric_unit
+        = {gram
+        | joule
+        | kilogram
+        | kilojoule
+        | liter
+        | milligram
+        | milliliter}
+
+gram = {"grams"
+        | "gram"
+        | "gr."
+        | "gr"
+        | "g."
+        | "g"}
+
+joule = {"joules"
+        | "joule"
+        | "j"}
+
+kilogram = {"kilograms"
+        | "kilogram"
+        | "kg."
+        | "kg"}
+
+kilojoule = {"kilojoules"
+        | "kilojoule"
+        | "kJ"
+        | "kj"}
+
+liter = {"liters"
+        | "liter"
+        | "l."
+        | "l"}
+
+milligram = {"milligrams"
+        | "milligram"
+        | "mg."
+        | "mg"}
+
+milliliter = {"milliliters"
+        | "milliliter"
+        | "ml."
+        | "ml"}
+
+imprecise_unit = {dash
+        | handful
+        | pinch
+        | touch}
+
+dash = {"dashes"
+        | "dash"}
+
+handful = {"handfuls"
+        | "handful"}
+
+pinch = {"pinches"
+        | "pinch"}
+
+touch = {"touches"
+        | "touch"}
+
+number = {written_number ~ break_character}
+
+written_number = {"a"
+        | "an"
+        | "zero"
+        | "one"
+        | "two"
+        | "three"
+        | "four"
+        | "five"
+        | "six"
+        | "seven"
+        | "eight"
+        | "nine"
+        | "ten"
+        | "eleven"
+        | "twelve"
+        | "thirteen"
+        | "fourteen"
+        | "fifteen"
+        | "sixteen"
+        | "seventeen"
+        | "eighteen"
+        | "nineteen"
+        | "twenty"
+        | "thirty"
+        | "forty"
+        | "fifty"
+        | "sixty"
+        | "seventy"
+        | "eighty"
+        | "ninety" }
+unicode_fraction = {"¼"
+        | "½"
+        | "¾"
+        | "⅐"
+        | "⅑"
+        | "⅒"
+        | "⅓"
+        | "⅔"
+        | "⅕"
+        | "⅖"
+        | "⅗"
+        | "⅘"
+        | "⅙"
+        | "⅚"
+        | "⅛"
+        | "⅜"
+        | "⅝"
+        | "⅞" }
+
+catch_all = {ANY*}

@@ -1,0 +1,34 @@
+[package]
+name = "ingreedy-rs"
+version = "0.1.0"
+authors = ["Ninjani <48680156+Ninjani@users.noreply.github.com>"]
+edition = "2018"
+description = "ingreedy-rs mandatory description"
+repository = "https://github.com/Ninjani/ingreedy-rs"
+license = "MIT OR Apache-2.0"
+keywords = ["ingreedy", "ingredient", "parser", "recipe", "nlp"]
+categories = ["Parser implementations", "Text processing"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+color-eyre = { version = "0.5.11", optional = true }
+clap = { version = "3.0.0-beta.2", optional = true }
+pest = "2.1.3"
+pest_derive = "2.1.0"
+lazy_static = "1.4.0"
+approx = "0.5.0"
+thiserror = "1.0.26"
+serde = { version = "1.0.125", features = ["derive"] }
+serde_json = "1.0.64"
+
+
+[features]
+default = ["cli"]
+
+# Feature required for hypothesis the CLI application.
+# Disable (set default-features=false) if using as a Rust crate.
+cli = [
+    "clap",
+    "color-eyre"
+]

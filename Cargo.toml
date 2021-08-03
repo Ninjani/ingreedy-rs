@@ -1,6 +1,6 @@
 [package]
 name = "ingreedy-rs"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Ninjani"]
 edition = "2018"
 description = "Rust port of ingreedy - natural language recipe ingredient parser"

@@ -107,7 +107,7 @@ lazy_static! {
 pub struct IngredientParser;
 
 /// Ingredient information
-#[derive(Default, Debug, Serialize, Deserialize, Clone, Default)]
+#[derive(Default, Debug, Serialize, Deserialize, Clone)]
 pub struct Ingredient {
     /// quantities for ingredient
     pub quantities: Vec<Quantity>,

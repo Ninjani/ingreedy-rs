@@ -107,7 +107,7 @@ lazy_static! {
 pub struct IngredientParser;
 
 /// Ingredient information
-#[derive(Default, Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize, Deserialize, Clone, Default)]
 pub struct Ingredient {
     /// quantities for ingredient
     pub quantities: Vec<Quantity>,
@@ -116,7 +116,7 @@ pub struct Ingredient {
 }
 
 /// System of unit used for a quantity
-#[derive(Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Eq, PartialEq, Serialize, Deserialize, Clone, Copy)]
 pub enum UnitType {
     English,
     Metric,
@@ -135,7 +135,7 @@ impl UnitType {
 }
 
 /// Quantity information
-#[derive(Default, Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize, Deserialize, Clone)]
 pub struct Quantity {
     pub amount: f64,
     pub unit: Option<String>,
